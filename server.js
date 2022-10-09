@@ -15,5 +15,5 @@ const con=mongoose.connection;
 
 con.on('open',()=>console.log('Database Connected'))
 app.listen(9002,()=>{
-    console.log(`App is ruuning on ${PORT}`)
+    console.log(`App is running on ${PORT}`)
 });
