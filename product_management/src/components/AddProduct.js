@@ -13,6 +13,11 @@ function AddProduct() {
 
     const onFinish1=(e)=>
     {    
+      const timeElapsed = Date.now();
+      const today = new Date(timeElapsed);
+      const datee=today.toDateString();
+      const dateee=datee.substring(4,datee.length)
+    
        let stat
       if(e.Status)
       stat="active";
@@ -26,7 +31,7 @@ function AddProduct() {
         qty:e.quantity,
         price:e.Price,
         status:stat,
-        date:Date()
+        date:dateee
 
        }
         

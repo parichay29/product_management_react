@@ -4,9 +4,12 @@ import "antd/dist/antd.min.css";
 import {Table} from "antd";
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import { Button } from 'antd';
+import { Button,Menu,Space,Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import { useNavigate } from "react-router-dom";
+//import { padding } from '@mui/system';
+//import { param } from '../../../Routes/Product';
 export default function Projectss() {
   <></>
   const navigate=useNavigate();
@@ -14,31 +17,92 @@ export default function Projectss() {
   
 
   useEffect(() => {
-
+    
     axios.get("/all")
       .then(res=>setProduct(res.data))
+    .then(err=>console.log(err))
+  },[])
+  
+  const handleMenuClick = (e) => {
+  
+
+   axios.get("/getMonth",  {params: {
+    foo:e.key,
+  },})
+      .then(res=>setProduct(res.data))
       .then(err=>console.log(err))
-  })
+};
+
+const menu = (
+  <Menu
+    onClick={handleMenuClick}
+    items={[
+      {
+        label: 'January',
+        key: 'Jan',
       
-    // const dataSource = [
-    //   {
-    //     code: '#3672',
-    //     name: 'HP PAVILLION AMD',
-    //     qty: 55,
-    //     price:68500,
-    //     s:'Active',
-    //      date : '6 October',
-    //   },
-    //   {
-    //     code: '#3673',
-    //     name: 'H PAVILLION AMD',
-    //     qty: 66,
-    //     price:68500,
-    //     s:'Inactive',
-    //      date : '6 October',
-    //   },
-    // ];
+      },
+      {
+        label: 'February',
+        key: 'Feb',
+        
+      },
+      {
+        label: 'March',
+        key: 'Mar',
+        
+      },
+      {
+        label: 'April',
+        key: 'Apr',
+      
+      },
+      {
+        label: 'May',
+        key: 'May',
+      
+      },
+      {
+        label: 'June',
+        key: 'Jun',
+        
+      },
+      {
+        label: 'July',
+        key: 'Jul',
     
+      },
+      {
+        label: 'August',
+        key: 'Aug',
+        
+      },
+      {
+        label: 'September',
+        key: 'Sep',
+      
+      },
+      {
+        label: 'October',
+        key: 'Oct',
+        
+      },
+      {
+        label: 'November',
+        key: 'Nov',
+      
+      },
+      {
+        label: 'December',
+        key: 'Dec',
+        
+      },
+
+    ]}
+  />
+);
+
+  
     const columns = [
       {
         title: 'Code',
@@ -97,12 +161,34 @@ export default function Projectss() {
         display: 'block', width: 1450,height:900, padding: 30 ,backgroundColor:"lightgray" 
         
       }}>
-        <h2 style={{paddingLeft:"150px"}}>Projects  <Button type='Primary' shape="round" onClick={() => navigate("/product/add") }>
-        + 
-      </Button> </h2>
-      
+        <div style={{width: 1450}} >
+        <h2 style={{paddingLeft:"150px"}}>Projects  
         
-       
+        <Button type='Primary' shape="round" onClick={() => navigate("/product/add") }>
+        + 
+      </Button> 
+      
+      
+      <Dropdown style={{padding:70}} overlay={menu}>
+      <Button>
+        <Space>
+          This Month
+          <DownOutlined />
+        </Space>
+      </Button>
+    </Dropdown>
+      
+      
+      </h2>
+        </div>
+        
+      
+
+
+      
+  
+        
+      
       
   
     
