@@ -2,7 +2,21 @@ const Product= require('../Models/Product_model')
 const bodyparser=require('body-parser');
 const { Console } = require('console');
 exports.getAll=async(req,res)=>{
-    await Product.find().then((product)=>res.send(product))
+    await Product
+    .find()
+    .then((product)=>res.send(product))
+
+    
+}
+
+exports.getMonth=async(req,res)=>{
+    let param = req.query.foo;
+    var regularExpression = new RegExp(".*" + param + ".*");
+    
+     await Product
+     .find ({"date": regularExpression })
+     .then((product)=>res.send(product))
+
     
 }
 
@@ -18,7 +32,9 @@ exports.add= async(req,res)=>{
         status:req.body.status,
         date:req.body.date,
     })
-     result=await product.save().then(product=>{
+     result=await product
+     .save()
+     .then(product=>{
         res.send(product);
     })
 }

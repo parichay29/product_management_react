@@ -6,7 +6,7 @@ router.use(bodyparser.json())
 const controlers=require('../controller/Product')
 router.use(cors())
 router.get('/all',controlers.getAll)
-
+router.get('/getMonth',controlers.getMonth)
 
 router.post('/new',controlers.add);
 module.exports=router;

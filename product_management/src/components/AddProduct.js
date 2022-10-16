@@ -2,14 +2,14 @@
 import React from 'react';
 import "antd/dist/antd.min.css"
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Input,Switch} from "antd";
-
 
 
 function AddProduct() {
   
    
+  const navigate=useNavigate();
 
     const onFinish1=(e)=>
     {    
@@ -136,13 +136,13 @@ function AddProduct() {
 
           <Form.Item name="Status" label="Status" requiredMark="required">
             
-          <Switch checkedChildren='Active' unCheckedChildren='Inactive' defaultChecked  name="status" style={{width:"100px",height:"25px"}}/>    
+          <Switch checkedChildren='Active' unCheckedChildren='Inactive'   name="status" style={{width:"100px",height:"25px"}}/>    
           </Form.Item>
 
 
     
 
-          <Button style={{marginLeft:"500px",marginTop:"100px"}} >Cancel</Button>
+          <Button onClick={() => navigate("/projects")} style={{marginLeft:"500px",marginTop:"100px"}} >Cancel</Button>
         <Button type='primary' htmlType='submit' style={{marginLeft:"30px"}}> Submit</Button>
           
         </Form>
